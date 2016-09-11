@@ -1,0 +1,35 @@
+{
+	"name": "lionar/foundation",
+	"description": "Lionar's foundation component",
+	"keywords": [ "lionar", "component", "HTTP" ],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Aron Wouters",
+			"email": "lionar@mail.com",
+			"role": "Developer"
+		}
+	],
+	"require" : {
+		"lionar/agreements": "*",
+		"php": ">=5.5.9",
+		"php-di/php-di": "*"
+  	},
+	"require-dev": {
+		"lionar/testing": "*"
+	},
+	"autoload": {
+    	"psr-4": {
+			"Foundation\\": "source"
+   	 	}
+  	},
+	"autoload-dev": {
+    	"psr-4": {
+			"Foundation\\Tests\\": "tests"
+		}
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev"
+}
