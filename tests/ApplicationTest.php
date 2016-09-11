@@ -157,4 +157,22 @@ class ApplicationTest extends TestCase
 	{
 		$this->application->has ( '', function ( ) { } );
 	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Call method testing
+	|--------------------------------------------------------------------------
+	*/
+
+	/**
+	 * @test
+	 */
+	public function call_withClosureAndArguments_returnsClosureResults ( )
+	{
+		$greeting = 'hello';
+		$closure = function ( $greeting ) { return $greeting; };
+		$this->container->shouldReceive ( 'call' )->with ( $closure, array ( 'greeting' => $greeting ) )
+			->once ( )->andReturn ( $greeting );
+		$this->assertSame ( $greeting, $this->application->call ( $closure, array ( 'greeting' => $greeting ) ) );
+	}
 }

@@ -37,10 +37,15 @@ class Application implements \Agreed\Application
 		return $this->container->get ( $abstract );
 	}
 
-	public function has ( $abstract )
+	public function has ( $abstract ) : bool
 	{
 		$this->check ( $abstract );
 		return ( bool ) $this->container->has ( $abstract );
+	}
+
+	public function call ( Closure $concrete, array $arguments = array ( ) )
+	{
+		return $this->container->call ( $concrete, $arguments );
 	}
 
 	private function check ( $abstract )

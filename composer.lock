@@ -40,12 +40,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lionar/agreements.git",
-                "reference": "aa1dadd8178f4e86d5653c32f674d93751ad4ced"
+                "reference": "abfc2f7467f3c5ef83834b266c943cd05909c83f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lionar/agreements/zipball/aa1dadd8178f4e86d5653c32f674d93751ad4ced",
-                "reference": "aa1dadd8178f4e86d5653c32f674d93751ad4ced",
+                "url": "https://api.github.com/repos/lionar/agreements/zipball/abfc2f7467f3c5ef83834b266c943cd05909c83f",
+                "reference": "abfc2f7467f3c5ef83834b266c943cd05909c83f",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +76,7 @@
                 "component",
                 "lionar"
             ],
-            "time": "2016-09-10 17:24:57"
+            "time": "2016-09-11 11:27:34"
         },
         {
             "name": "php-di/invoker",

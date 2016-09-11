@@ -25,6 +25,11 @@ class Application
 	{
 		$this->container->set ( $abstract, DI\factory ( $concrete )->scope ( Scope::PROTOTYPE ) );
 	}
+
+	public function call ( Closure $closure, array $arguments = array ( ) )
+	{
+		return $this->container->call ( $closure, $arguments );
+	}
 }
 
 'MyClass2' => DI\factory(function () {
