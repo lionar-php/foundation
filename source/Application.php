@@ -8,7 +8,7 @@ use DI\ContainerBuilder;
 use DI\Scope;
 use InvalidArgumentException;
 
-class Application implements \Agreed\Application
+class Application implements \Agreed\Technical\Application
 {
 	private $container = null;
 
