@@ -42,6 +42,6 @@ bind ( 'i want to add see an exercise list', function ( NotBoundDependency $gree
 	echo 'hello there';
 } );
 
-// $application->make ( 'i want to see the dashboard' );
-$application->make ( 'i want to add an exercise to the trainer' );
+$application->make ( 'i want to see the dashboard' );
+// $application->make ( 'i want to add an exercise to the trainer' );
 // $application->make ( 'i want to add see an exercise list' );

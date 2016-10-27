@@ -15,7 +15,6 @@ use TypeError;
 class Application implements \Agreed\Technical\Application
 {
 	private $container = null;
-	private $traces = array ( );
 
 	public function __construct ( Container $container = null )
 	{
@@ -26,16 +25,12 @@ class Application implements \Agreed\Technical\Application
 	{
 		$this->check ( $abstract );
 		$this->container->set ( $abstract, $concrete );
-
-		$this->trace ( $abstract );
 	}
 
 	public function bind ( $abstract, Closure $concrete )
 	{
 		$this->check ( $abstract );
 		$this->container->set ( $abstract, \DI\factory ( $concrete )->scope ( Scope::PROTOTYPE ) );
-
-		$this->trace ( $abstract );
 	}
 
 	public function make ( $abstract )
@@ -72,11 +67,5 @@ class Application implements \Agreed\Technical\Application
 		} catch ( TypeError $e ) {
 			throw new UnresolvableDependencyException ( $abstract, rtrim ( explode ( ' ', $e->getMessage ( ) ) [ 8 ], ',' ), $this->traces [ $abstract ] );
 		}
-	}
-
-	private function trace ( $abstract )
-	{
-		$trace = debug_backtrace ( 0 | DEBUG_BACKTRACE_IGNORE_ARGS );
-		$this->traces [ $abstract ] = new Trace ( array_pop ( $trace ) );
 	}
 }

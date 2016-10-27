@@ -3,12 +3,11 @@
 namespace Foundation\Exceptions;
 
 use Exception;
-use Foundation\Trace;
 
 class InexistentDependencyException extends Exception
 {
-	public function __construct ( $abstract, $dependency, Trace $trace )
+	public function __construct ( $abstract, $dependency )
 	{
-		parent::__construct ( "We could not resolve class: $dependency, when trying to make abstract type: $abstract. The abstract type was bound in: $trace->file at line: $trace->line." );
+		parent::__construct ( "We could not resolve class: $dependency, when trying to make abstract type: $abstract." );
 	}
 }
