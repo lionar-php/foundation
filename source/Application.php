@@ -63,9 +63,9 @@ class Application implements \Agreed\Technical\Application
 		try {
 			return $this->container->get ( $abstract );
 		} catch ( ReflectionException $e ) {
-			throw new InexistentDependencyException ( $abstract, explode ( ' ', $e->getMessage ( ) ) [ 1 ], $this->traces [ $abstract ] );
+			throw new InexistentDependencyException ( $abstract, explode ( ' ', $e->getMessage ( ) ) [ 1 ] );
 		} catch ( TypeError $e ) {
-			throw new UnresolvableDependencyException ( $abstract, rtrim ( explode ( ' ', $e->getMessage ( ) ) [ 8 ], ',' ), $this->traces [ $abstract ] );
+			throw new UnresolvableDependencyException ( $abstract, rtrim ( explode ( ' ', $e->getMessage ( ) ) [ 8 ], ',' ) );
 		}
 	}
 }
