@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b418e37c86a1e2c376a3d35555d69830",
+    "hash": "0baa32d0850f8cb4d92e2f338f081aa7",
     "content-hash": "f9836910bebbb5991b120581554421b8",
     "packages": [
         {
@@ -40,12 +40,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lionar/agreements.git",
-                "reference": "ac85af32e44cdaca3aef592add0febcd65a93ebe"
+                "reference": "a28b884997116b64aaa29f6bf6f7c7a339c85650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lionar/agreements/zipball/ac85af32e44cdaca3aef592add0febcd65a93ebe",
-                "reference": "ac85af32e44cdaca3aef592add0febcd65a93ebe",
+                "url": "https://api.github.com/repos/lionar/agreements/zipball/a28b884997116b64aaa29f6bf6f7c7a339c85650",
+                "reference": "a28b884997116b64aaa29f6bf6f7c7a339c85650",
                 "shasum": ""
             },
             "require": {
@@ -80,7 +80,7 @@
                 "component",
                 "lionar"
             ],
-            "time": "2016-09-30 12:30:44"
+            "time": "2016-10-02 13:18:30"
         },
         {
             "name": "lionar/support",
@@ -88,12 +88,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lionar/support.git",
-                "reference": "0ca4e66e946a464455d93544e462b5ac761828c3"
+                "reference": "afb6fe4bd43e2ce2245261cbe62a9dc70888bad9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lionar/support/zipball/0ca4e66e946a464455d93544e462b5ac761828c3",
-                "reference": "0ca4e66e946a464455d93544e462b5ac761828c3",
+                "url": "https://api.github.com/repos/lionar/support/zipball/afb6fe4bd43e2ce2245261cbe62a9dc70888bad9",
+                "reference": "afb6fe4bd43e2ce2245261cbe62a9dc70888bad9",
                 "shasum": ""
             },
             "require-dev": {
@@ -102,7 +102,9 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Support\\": "source"
+                    "Accessibility\\": "source/Accessibility",
+                    "Arrays\\": "source/Arrays",
+                    "Facades\\": "source/Facades"
                 },
                 "files": [
                     "helpers/arrays.php",
@@ -127,7 +129,7 @@
                 "lionar",
                 "support"
             ],
-            "time": "2016-09-27 11:25:11"
+            "time": "2016-10-01 14:48:29"
         },
         {
             "name": "php-di/invoker",
@@ -721,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "c1016e6501312201ede77e3911748024d78cdd31"
+                "reference": "5c324f4951aca87a2de61b7903b75126516b6386"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/c1016e6501312201ede77e3911748024d78cdd31",
-                "reference": "c1016e6501312201ede77e3911748024d78cdd31",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/5c324f4951aca87a2de61b7903b75126516b6386",
+                "reference": "5c324f4951aca87a2de61b7903b75126516b6386",
                 "shasum": ""
             },
             "require": {
@@ -776,7 +778,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2016-09-28 11:19:12"
+            "time": "2016-10-02 13:12:17"
         },
         {
             "name": "phpunit/php-code-coverage",

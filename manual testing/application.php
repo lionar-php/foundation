@@ -29,4 +29,5 @@ $application->share ( 'greet', function ( Greeter $greeter )
 	return $greeter->greet ( );
 } );
 
+dd ( $application );
 dd ( $application->make ( 'greet' ) );

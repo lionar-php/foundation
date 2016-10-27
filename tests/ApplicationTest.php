@@ -57,6 +57,20 @@ class ApplicationTest extends TestCase
 		$this->assertSame ( $concrete, $this->application->make ( $abstract ) );
 	}
 
+	/**
+	 * @test
+	 */
+	public function share_withStringValueForAbstract_addsTraceToApplicationUnderAbstract ( )
+	{
+		$abstract = 'Engine';
+		$concrete = function ( ) { };
+
+		$this->container->shouldReceive ( 'set' )->once ( );
+		
+		$this->application->share ( $abstract, $concrete );
+		assertThat ( $this->property ( $this->application, 'traces' ), hasKey ( $abstract ) );
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Bind method testing
@@ -97,6 +111,20 @@ class ApplicationTest extends TestCase
 		$this->assertTrue ( $this->application->has ( $abstract ) );
 	}
 
+	/**
+	 * @test
+	 */
+	public function bind_withStringValueForAbstract_addsTraceToApplicationUnderAbstract ( )
+	{
+		$abstract = 'Engine';
+		$concrete = function ( ) { };
+
+		$this->container->shouldReceive ( 'set' )->once ( );
+		
+		$this->application->bind ( $abstract, $concrete );
+		assertThat ( $this->property ( $this->application, 'traces' ), hasKey ( $abstract ) );
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Make method testing
@@ -131,6 +159,25 @@ class ApplicationTest extends TestCase
 		$nonRegisteredAbstract = 'non registered';
 		$this->container->shouldReceive ( 'has' )->with ( $nonRegisteredAbstract )->once ( )->andReturn ( false );
 		$this->application->make ( $nonRegisteredAbstract );
+	}
+
+	/**
+	 * @test
+	 * @expectedException Foundation\Exceptions\InexistentDependencyException
+	 */
+	public function make_withAbstractTypeThatHasClosureWithNonExistentClassDependency_throwsException ( )
+	{
+		$abstract = 'type';
+		$closure = function ( InExistent $dependency ) { };
+
+		$this->container->shouldReceive ( 'set' );
+		
+		$this->application->bind ( $abstract, $closure );
+
+		$this->container->shouldReceive ( 'has' )->with ( $abstract )->andReturn ( true );
+		$this->container->shouldReceive ( 'get' )->andThrow ( 'ReflectionException', 'Class InExistent does not exist' );
+
+		$this->application->make ( $abstract );
 	}
 
 	/*

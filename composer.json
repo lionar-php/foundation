@@ -1,6 +1,6 @@
 {
 	"name": "lionar/foundation",
-	"description": "Lionar's foundation component",
+	"description": "Lionar's foundation. Start your application with a head start.",
 	"keywords": [ "lionar", "component", "HTTP" ],
 	"license": "MIT",
 	"authors": [
@@ -11,16 +11,16 @@
 		}
 	],
 	"require" : {
-		"lionar/agreements": "*",
+		"lionar/agreements"		: "*",
 		"php": ">=5.5.9",
-		"php-di/php-di": "*"
+		"php-di/php-di"			: "*"
   	},
 	"require-dev": {
-		"lionar/testing": "*"
+		"lionar/testing"		: "*"
 	},
 	"autoload": {
     	"psr-4": {
-			"Foundation\\": "source"
+			"Foundation\\"		: "source"
    	 	}
   	},
 	"autoload-dev": {
