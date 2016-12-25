@@ -132,26 +132,7 @@ class ApplicationTest extends TestCase
 		$this->container->shouldReceive ( 'has' )->with ( $nonRegisteredAbstract )->once ( )->andReturn ( false );
 		$this->application->make ( $nonRegisteredAbstract );
 	}
-
-	/**
-	 * @test
-	 * @expectedException Foundation\Exceptions\InexistentDependencyException
-	 */
-	public function make_withAbstractTypeThatHasClosureWithNonExistentClassDependency_throwsException ( )
-	{
-		$abstract = 'type';
-		$closure = function ( InExistent $dependency ) { };
-
-		$this->container->shouldReceive ( 'set' );
-		
-		$this->application->bind ( $abstract, $closure );
-
-		$this->container->shouldReceive ( 'has' )->with ( $abstract )->andReturn ( true );
-		$this->container->shouldReceive ( 'get' )->andThrow ( 'ReflectionException', 'Class InExistent does not exist' );
-
-		$this->application->make ( $abstract );
-	}
-
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Has method testing

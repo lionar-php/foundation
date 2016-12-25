@@ -13,6 +13,11 @@ interface NotBoundDependency
 
 }
 
+class Dependency implements NotBoundDependency
+{
+
+}
+
 class Unresolvable
 {
 	public function __construct ( NotBoundDependency $d )
@@ -21,11 +26,14 @@ class Unresolvable
 	}
 }
 
+// share ( NotBoundDependency::class, function ( ) { return new Dependency; } );
+
 
 bind ( 'i want to see the dashboard', function ( Unresolvable $greetor )
 {
 	echo 'hello there';
 } );
+
 
 bind ( 'i want to add an exercise to the trainer', function ( Missing $greetor )
 {
@@ -43,5 +51,9 @@ bind ( 'i want to add see an exercise list', function ( NotBoundDependency $gree
 } );
 
 $application->make ( 'i want to see the dashboard' );
+
+
+
+
 // $application->make ( 'i want to add an exercise to the trainer' );
 // $application->make ( 'i want to add see an exercise list' );
