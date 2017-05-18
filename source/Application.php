@@ -3,55 +3,45 @@
 namespace Foundation;
 
 use Closure;
-use DI\Container;
-use DI\ContainerBuilder;
-use DI\Scope;
-use InvalidArgumentException;
-use ReflectionException;
-use TypeError;
+use Foundation\Exceptions\DuplicateRequestException;
+use Foundation\Exceptions\UnknownRequestException;
+use Illuminate\Container\Container;
 
-class Application implements \Agreed\Technical\Application
+class Application extends Container
 {
-	private $container = null;
+	private $features = [ ];
 
-	public function __construct ( Container $container = null )
+	public function feature ( string $request, Closure $task )
 	{
-		$this->container = ( $container ) ?: ( new ContainerBuilder )->build ( );
+		if ( ! $this->canHandle ( $request ) )
+			return $this->features [ $request ] = $task;
+		throw new DuplicateRequestException ( $request );
 	}
 
-	public function share ( $abstract, Closure $concrete )
+	public function canHandle ( string $request ) : bool
 	{
-		$this->check ( $abstract );
-		$this->container->set ( $abstract, $concrete );
+		return array_key_exists ( $request, $this->features );
 	}
 
-	public function bind ( $abstract, Closure $concrete )
+	public function taskFor ( string $request ) : Closure
 	{
-		$this->check ( $abstract );
-		$this->container->set ( $abstract, \DI\factory ( $concrete )->scope ( Scope::PROTOTYPE ) );
+		if ( ! $this->canHandle ( $request ) )
+			throw new UnknownRequestException ( $request );
+		return $this->features [ $request ];
 	}
 
-	public function make ( $abstract )
+	public function bind ( $abstract, $concrete = null, $shared = false )
 	{
-		if ( ! $this->has ( $abstract ) )
-			throw new InvalidArgumentException ( "$abstract is not registered in the application" );
-		return $this->container->get ( $abstract );
+		if ( $concrete instanceOf Closure )
+			return $this->binding ( $abstract, $concrete );
+		return parent::bind ( $abstract, $concrete, $shared );
 	}
 
-	public function has ( $abstract ) : bool
+	private function binding ( string $abstract, Closure $concrete )
 	{
-		$this->check ( $abstract );
-		return ( bool ) $this->container->has ( $abstract );
-	}
-
-	public function call ( Closure $concrete, array $arguments = array ( ) )
-	{
-		return $this->container->call ( $concrete, $arguments );
-	}
-
-	private function check ( $abstract )
-	{
-		if ( ! is_string ( $abstract ) or empty ( $abstract ) )
-			throw new InvalidArgumentException ( '$abstract must be a non empty string' );
+		parent::bind ( $abstract, function ( Container $container, array $parameters = [ ] ) use ( $concrete )
+		{
+			return $this->call ( $concrete, $parameters );
+		} );
 	}
 }

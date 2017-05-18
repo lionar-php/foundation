@@ -1,7 +1,8 @@
 {
 	"name": "lionar/foundation",
-	"description": "Lionar's foundation. Start your application with a head start.",
-	"keywords": [ "lionar", "component", "HTTP" ],
+	"version": "0.0.1",
+	"description": "A foundation to build a well organised application from.",
+	"keywords": [ "Lionar", "Foundation" ],
 	"license": "MIT",
 	"authors": [
 		{
@@ -11,25 +12,25 @@
 		}
 	],
 	"require" : {
-		"lionar/agreements"		: "*",
-		"php": ">=5.5.9",
-		"php-di/php-di"			: "*"
+		"illuminate/container": "5.4.*",
+		"illuminate/events": "5.4.*",
+		"illuminate/routing": "5.4.*"
   	},
 	"require-dev": {
-		"lionar/testing"		: "*"
+		
 	},
 	"autoload": {
     	"psr-4": {
-			"Foundation\\"		: "source"
+			"Foundation\\": "source"
    	 	}
   	},
 	"autoload-dev": {
     	"psr-4": {
-			"Foundation\\Tests\\": "tests"
+			
 		}
 	},
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "stable"
 }
