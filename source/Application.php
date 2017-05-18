@@ -33,15 +33,15 @@ class Application extends Container
 	public function bind ( $abstract, $concrete = null, $shared = false )
 	{
 		if ( $concrete instanceOf Closure )
-			return $this->binding ( $abstract, $concrete );
+			return $this->binding ( $abstract, $concrete, $shared );
 		return parent::bind ( $abstract, $concrete, $shared );
 	}
 
-	private function binding ( string $abstract, Closure $concrete )
+	private function binding ( string $abstract, Closure $concrete, bool $shared = false )
 	{
 		parent::bind ( $abstract, function ( Container $container, array $parameters = [ ] ) use ( $concrete )
 		{
 			return $this->call ( $concrete, $parameters );
-		} );
+		}, $shared );
 	}
 }
