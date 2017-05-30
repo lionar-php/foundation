@@ -11,4 +11,4 @@ class route
 	}
 }
 
-route::get ( '/', 'i want to see the dashboard' );
+route::get ( '/', 'i want to see my name' );

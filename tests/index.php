@@ -1,11 +1,11 @@
 <?php
 
+use Foundation\Application;
+use Foundation\Routing\Router;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Routing\Router;
 use Illuminate\Routing\UrlGenerator;
-use Foundation\Application;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -13,9 +13,27 @@ require __DIR__ . '/../vendor/autoload.php';
 // Create a service container
 $application = new Application;
 
-$application->feature ( 'i want to see the dashboard', function ( )
+class name
 {
-	echo 'YEAH FROM THAT CONTAINER B';
+	public function __construct ( $full )
+	{
+		$this->full = $full;
+	}
+
+	public function __toString ( )
+	{
+		return $this->full;
+	}
+}
+
+$application->bind ( name::class, function ( $name )
+{
+	return new name ( $name );
+} );
+
+$application->feature ( 'i want to see my name', function ( name $name )
+{
+	echo $name;
 } );
 
 // Create a request from server variables, and bind it to the container; optional
@@ -26,7 +44,8 @@ $application->instance('Illuminate\Http\Request', $request);
 // Illuminate/Contracts/Event/Dispatcher is acceptable
 $events = new Dispatcher ( $application );
 
-$router = new Router($events, $application);
+$router = new Router ( $events, $application );
+
 
 require __DIR__ . '/routes.php';
 
